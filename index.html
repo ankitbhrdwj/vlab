@@ -1,57 +1,98 @@
 <!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Vlab by ankit-iitb</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Vlab</h1>
-        <p>Thesis Project</p>
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/github-dark.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-        <p class="view"><a href="https://github.com/ankit-iitb/vlab">View the Project on GitHub <small>ankit-iitb/vlab</small></a></p>
+  <title>Vlab</title>
+  <meta name="description" content="Thesis Project">
 
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-        <ul>
-          <li><a href="https://github.com/ankit-iitb/vlab/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ankit-iitb/vlab/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ankit-iitb/vlab">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Vlab</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Thesis Project</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/ankit-iitb/vlab/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/ankit-iitb/vlab/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/ankit-iitb/vlab" class="code">View Vlab on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h3>
 <a id="vlab-managing-and-provisioning-vms-for-labs" class="anchor" href="#vlab-managing-and-provisioning-vms-for-labs" aria-hidden="true"><span class="octicon octicon-link"></span></a>vLab: Managing and Provisioning VMs for Labs</h3>
 
-<p>Gateway The I/O requests from the QEMU block driver are handled by the Gateway. It is not
-necessary that all the data is present on the same node, in that case gateway may interact with
-other nodes also. To read/write the actual data from/to disk Gateway talk to Object Manager,a
-component of Object Store. Gateway calculates the target nodes based on the consistent hashing
-algorithm and request is forwarded to the object manager of the target node.</p>
+<p>The aim of the project is to design and implement a system, in which we are managing and provisioning VMs for each student, who is enrolled in some course. For each course in which the student is enrolled, s/he will get a VM and the VM can be used for execution of lab. We have implemented a working prototype of the system and work is on progress.</p>
+
+<hr>
 
 <h3>
-<a id="vlab-managing-and-provisioning-vms-for-labs-1" class="anchor" href="#vlab-managing-and-provisioning-vms-for-labs-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>vLab: Managing and Provisioning VMs for Labs</h3>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h3>
 
-<p>Gateway The I/O requests from the QEMU block driver are handled by the Gateway. It is not
-necessary that all the data is present on the same node, in that case gateway may interact with
-other nodes also. To read/write the actual data from/to disk Gateway talk to Object Manager,a
-component of Object Store. Gateway calculates the target nodes based on the consistent hashing
-algorithm and request is forwarded to the object manager of the target node.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/ankit-iitb">ankit-iitb</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+<hr>
+
+<h3>
+<a id="project-status" class="anchor" href="#project-status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Project Status</h3>
+
+<p>Completed Tasks:</p>
+
+<ul>
+<li>Front-End in PHP, allow login to student and instructor using IITB ldap-ID.</li>
+<li>Use of IITB ldap-ID for login, with full integration in php.</li>
+<li>Use of libvirt-php API to interact with libvirt and to create,start,stop the VM.</li>
+<li>Cluster Setup for sheepdog distributed storage.</li>
+<li>Using sheepdog distributed storage for qemu-kvm virtual machines.</li>
+<li>Accessing Qemu on any cluster machine using a TCP connection.</li>
+<li>Starting VM, having sheepdog disk image, on any of the cluster machine.</li>
+<li>Get all the information about resources of any node in the cluster.</li>
+</ul>
+
+<p>TODO:</p>
+
+<hr>
+
+<h3>
+<a id="people-associated-with-the-project" class="anchor" href="#people-associated-with-the-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>People Associated With the Project</h3>
+
+<p>This project is implemented by Ankit Bhardwaj for the requirement of thesis project in his
+master degree and guidance was provided by Prof. Purushottam Kulkarni, CSE, IIT Bombay.</p>
+        </article>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/ankit-iitb" class="avatar"><img src="https://avatars2.githubusercontent.com/u/13118532?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/ankit-iitb">ankit-iitb</a> maintains <a href="https://github.com/ankit-iitb/vlab">Vlab</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/ankit-iitb/vlab/tarball/master" class="tar">tar</a><a href="https://github.com/ankit-iitb/vlab/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
 </html>
