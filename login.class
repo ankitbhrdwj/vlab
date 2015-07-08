@@ -1,0 +1,535 @@
+<?php
+if(!isset($_SESSION)) 
+{ 
+        session_start(); 
+} 
+require "./data/settings.php";
+class Login 
+{
+	private $username;//
+	private $name;
+	private $password;//
+	private $email;
+	private $level;	//
+	public function __construct() 
+	{
+		$this->connect();
+		if(!isset($_SESSION['val']))
+		{
+			$_SESSION['val'] = false;
+		}		
+	}
+		
+	public function connect() 
+	{	
+		global $LOGIN_DB_HOSTNAME,$LOGIN_DB_PWD,$LOGIN_DB_UNAME,$LOGIN_DB_NAME;
+		mysql_connect($LOGIN_DB_HOSTNAME,$LOGIN_DB_UNAME,$LOGIN_DB_PWD) OR die("Cannot connect to MySQL server!");	
+		mysql_select_db($LOGIN_DB_NAME) OR die("Cannot select database!");
+	}
+	
+	function ldap_auth($ldap_id,$ldap_password,$chek_value,$level)
+	{	
+		global $LDAP_SERVER,$Base_DN;
+		$ds = ldap_connect($LDAP_SERVER) or die("Unable to connect to LDAP server. Please try again later.");
+		if($ldap_id=='') die("You have not entered any LDAP ID. Please go back and fill it up.");
+		if($ldap_password=='') die("You have not entered any password. Please go back and fill it up.");
+		$sr = ldap_search($ds,$Base_DN,"(uid=$ldap_id)");
+		$info = ldap_get_entries($ds,$sr);
+		
+		$this->username=$ldap_id;
+		$this->password=$ldap_password;
+		$this->level=$info[0]['employeetype'][0];
+		$this->name =$info[0]['gecos'][0]; 
+		$this->email=$info[0]['mail'][0];	
+
+		$roll = $info[0]["employeenumber"][0];
+		$ldap_id = $info[0]['dn'];
+		if(@ldap_bind($ds,$ldap_id,$ldap_password))
+		{
+			if(($level=="instructor" && $this->level=="fac") || ($level=="student" && $this->level!="fac") || ($level=="instructor" && $this->level!="fac"))  //??? Delete the last condition
+			{
+				$this->sessionverify();
+				if($chek_value)
+				{
+					$this->set_cookie();
+				}
+				echo  "<script>alert(\"login successful\")</script><br>"; 
+				echo "<script>location.replace(\"$_SESSION[destination]\")</script><br>";
+				header("Location: $_SESSION[destination]");
+				//break; 
+			}
+			else
+			{
+				echo  "<script>alert(\"Username or password doesnt match for $level!!!!\")</script><br>"; 
+				echo "<script>location.replace(\"login.php\")</script><br>";
+			}
+		}
+		else
+		{
+			echo  "<script>alert(\"Wrong Username or Password.\")</script><br>";
+			echo "<script>location.replace(\"login.php\")</script><br>";
+		}
+	}
+
+	public function verify1($username,$password,$chek_value,$level) 
+	{
+		$this->username=$username;
+		$this->password=$password;
+		$this->level=$level;
+		$result=mysql_query("Select * from user_info where username='$username'") ;
+		while($row1= mysql_fetch_array($result))
+		{
+			$pwd=$row1['password'];
+			$lvl=$row1['level'];
+			$this->name=$row1['name'];
+			$this->email=$row1['email'];
+			//echo $pwd;
+			if($password==$pwd && $level==$lvl)
+			{
+				echo "hello";
+				$this->sessionverify();
+				if($chek_value)
+				{
+					$this->set_cookie();
+				}
+				echo  "<script>alert(\"login successful\")</script><br>"; 
+				echo "<script>location.replace(\"$_SESSION[destination]\")</script><br>";
+				header("Location: $_SESSION[destination]");
+				break; 
+			}
+			else
+			{
+				echo  "<script>alert(\"Username or password doesnt match for an $level !!!!\")</script><br>"; 
+				echo "<script>location.replace(\"login.php\")</script><br>";
+			}
+		}
+	}
+
+	public function sessionverify() 
+	{	
+		$_SESSION['val'] = true;
+		$_SESSION['username'] = $this->username;
+		$_SESSION['password'] = $this->password;
+		$_SESSION['level'] = $this->level;
+		$_SESSION['name'] = $this->name;
+		$_SESSION['email'] = $this->email;
+	}
+
+	public function set_cookie() 
+	{	
+		setcookie("user", $this->username, time()+3600);
+		setcookie("pwd", $this->password, time()+3600);
+		setcookie("level", $this->level, time()+3600);
+		setcookie("name", $this->name, time()+3600);
+		setcookie("email", $this->email, time()+3600);
+	}
+
+	public function destroy_cookie() 
+	{	
+		setcookie("user", $this->username, time()-3600);
+		setcookie("pwd", $this->password, time()-3600);
+		setcookie("level", $this->level, time()-3600);
+		setcookie("name", $this->name, time()-3600);
+		setcookie("email", $this->email, time()-3600);
+	}
+
+	public function sessiondestroy() 
+	{	
+		unset($_SESSION['username']);
+		session_destroy();
+		$_SESSION['val']=false;
+		echo "<script>location.replace(\"login.php\")</script><br>";
+	}
+
+	public function register($username,$name,$password,$email,$level)
+	{
+		$result=mysql_query("select * from user_info where username='$username'");
+		if(mysql_num_rows($result) == 0)
+		{
+			$result1=mysql_query("INSERT INTO user_info (username,name,password,email,level)
+			VALUES ('$username','$name','$password','$email','$level')") ;
+			$msg  = "Thank you for registering with vLAB.\n";
+			$msg .= "Your login information is:\n\n";
+			$msg .= "Username: $username\n";
+			$msg .= "Name: $name\n";
+			$msg .= "Password: $password\n";
+			$msg .= "Email-id: $email\n";
+			mail($email, "Login Information","$msg", "From:noreply@vlab.cse.iitb.ac.in");
+			echo  "<script>alert(\"New User registered.\")</script><br>"; 
+			echo "<script>location.replace(\"$_SESSION[destination]\")</script><br>";
+		}
+		else
+		{
+			echo  "<script>alert(\"User with this name already registered.\")</script><br>"; 
+			echo "<script>location.replace(\"$_SESSION[destination]\")</script><br>";
+		}
+	}
+
+	public function chek_avail($username) 
+	{
+		$length=strlen($username);
+		if($length==0)
+			$res=1;
+		else if($length>5 && $length<32)
+		{
+			$res=4;
+			$result = mysql_query("SELECT * from user_info");
+			while($row = mysql_fetch_array($result))
+			{
+				if(strcmp($username,$row['Username'])==0)
+	  			$res=3;
+	  		}
+		}
+		else
+			$res=2;
+	echo $res; 
+	}
+
+	public function verify_im($capcha) 
+	{
+		$key;
+		if(!strcmp($capcha,$_SESSION['vercode'])==0)
+		{
+			$key=1;
+			echo $key;
+		}
+		else
+		{
+			$key=2;
+			echo $key;
+		} 
+	}
+
+	public function chek_pwd($password) 
+	{
+		$length=strlen($password);
+		$var;
+		if($length==0 || $length<=4)
+		{
+			$var=1;
+			echo $var;
+		}
+		else if($length>4 && $length<=8)
+		{
+		    $var=2;
+			echo $var;;	
+		}
+		else if($length>8 && $length<=12)
+		{
+			$var=3;
+			echo $var;		
+		}
+		else if($length>12)
+		{
+			$var=4;
+			echo $var;	
+		}
+		return;
+	}
+
+	public function enroll($rollno,$courseid)
+	{
+		$result=mysql_query("Select * from course_info where courseid='$courseid'") ;
+		if(mysql_num_rows($result) == 0)
+		{	
+			echo  "<script>alert(\"This course is not added to the database.\")</script><br>"; 
+			echo "<script>location.replace(\"addcourse.php\")</script><br>";
+		}
+		else
+		{	
+			$result1=mysql_query("INSERT INTO enrollment_info (rollno,courseid) VALUES ('$rollno','$courseid')") ;
+			if (!$result1) 
+			{
+				echo  "<script>alert(\"Student $rollno already registered to this course.\")</script><br>";	
+			}
+			$email=$rollno."@iitb.ac.in";
+			$msg="This is a machine generated email.";
+			$msg.="Roll No $rollno is enrolled in $courseid."; 
+			$msg.="Please login to the system and create your VM !!!";
+			mail($email, "Enrollment Information","$msg", "From:noreply@vlab.cse.iitb.ac.in");
+		}
+	}
+
+	public function createvm($rollno,$courseid)
+	{
+		$mac="";
+		$vmname="$rollno"."$courseid";
+		$result=mysql_query("Select * from vm_info where vmname='$vmname'") ;
+		if(mysql_num_rows($result) == 0)
+		{
+			$mac=shell_exec("/usr/bin/python extras/macgen.py");
+			$result1=mysql_query("Select * from vm_info where mac='$mac'") ;
+			if(mysql_num_rows($result1) == 0)
+			{
+				$mac=trim($mac);
+				mysql_query("INSERT INTO vm_info (vmname,mac,courseid,status) VALUES ('$vmname','$mac','$courseid','0')") ;
+			}
+			else
+			{
+				$flag = 0;
+				while($flag == 0)
+				{
+					$mac=shell_exec("/usr/bin/python extras/macgen.py");
+					$result1=mysql_query("Select * from vm_info where mac='$mac'") ;
+					if(mysql_num_rows($result1) == 0)
+					{	
+						$flag=1;
+						mysql_query("INSERT INTO vm_info (vmname,mac,courseid,status) VALUES ('$vmname','$mac','$courseid','0')") ;
+					}
+				}
+			}
+		
+		}
+		else
+		{	
+			echo  "<script>alert(\"VM $vmname is already added to database.\")</script><br>"; 
+		}	
+
+	}
+
+	public function enrollment($rollno)
+	{
+		$result=mysql_query("select distinct enrollment_info.courseid,instructor from enrollment_info,course_info where enrollment_info.rollno='$rollno'") ;
+		if(mysql_num_rows($result) == 0)
+		{
+			echo "<script>alert(\"You are not enrolled in any of the course.\")</script><br>";
+		}
+		else
+		{
+			echo "<table align=center border=1 bgcolor=skyblue><tr><td>Course-ID</td><td>Instructor</td></tr>";
+			while($row = mysql_fetch_array($result))
+	   		{
+				echo "<tr><td>".$row['courseid']."</td><td>".$row['instructor']."</td></tr>";
+			}
+			echo "</table>";
+		}
+	}
+
+	public function course_enrollment($courseid)
+	{
+		$result=mysql_query("Select * from enrollment_info where courseid='$courseid'") ;
+		if(mysql_num_rows($result) == 0)
+		{
+			echo "<script>alert(\"No user is enrolled in this course.\")</script><br>";
+		}
+		else
+		{
+			echo "Enrolled Student:<br>";
+			echo "-----------------<br>";
+			while($row = mysql_fetch_array($result))
+	   		{
+				echo $row['rollno']."<br>";
+			}
+		}
+	}
+
+	public function vmstart($rollno)
+	{
+		$result=mysql_query("Select * from vm_info where vmname LIKE '$rollno%'") ;
+		if(mysql_num_rows($result) == 0)
+		{
+			echo "<script>alert(\"No VM is there for you.\")</script><br>";
+		}
+		else
+		{
+		//	echo "<div id='logbutton'>";
+			echo "<font spacing=-1>VMs for you</font>";
+		//	echo "---------------------------<br></div>";
+			echo "<form name='form1' action='vmstart.php' method='post'><select name='vmname'>";		
+			echo "<option value=''> Select Virtual Machine</option>";		
+			while($row = mysql_fetch_array($result))
+	   		{
+				if($row['status'] == 1 )
+				{
+					//echo $row['vmname'];
+					$vm=$row['vmname'];
+					echo "<option value='$vm'>$vm</option>";
+				}
+				else
+				{
+					$vm=$row['vmname'];
+					echo "<option value='$vm'>$vm</option>";
+				//	echo "<br><p align=\"center\">You are enrolled in some courses.Ask sysad to create your VMs.</p>";		
+				}
+			}
+			echo "</select><br><br>";
+	//		echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			echo "<input type='submit' id='create'name='create' value='CreateVM'>";
+			echo "<input type='submit' id='start' name='start' value='StartVM'>";
+			echo "<input type='submit' id='stop'  name='stop' value='StopVM'>";
+			echo "<input type='submit' id='info'  name='info' value='VM-Info'>";
+			echo "</form>";
+			echo "<br>";
+		}
+	}
+
+	public function add_course($courseid,$instname)
+	{
+		$result1=mysql_query("INSERT INTO course_info (instructor,courseid,template) VALUES ('$instname','$courseid','0')") ;
+		if (!$result1) 
+		{	
+			$result=mysql_query("Select * from course_info where courseid='$courseid'") ;
+			$row = mysql_fetch_array($result);
+			$inst = $row['instructor'];
+			if($_SESSION['name'] == $inst)
+				echo  "<script>alert(\"Course already registered by you.\")</script><br>";
+			else
+				echo  "<script>alert(\"Course already registered by $inst.\")</script><br>";
+			echo "<script>location.replace(\"addcourse.php\")</script><br>";
+		}
+		else
+		{
+			echo  "<script>alert(\"Course registered.\")</script><br>";
+			$log="[".date(DATE_RFC2822)."] COURSE ADDED: $instname added new course $courseid".PHP_EOL;
+			error_log("$log", 3,"stats.log");
+			echo "<script>location.replace(\"addstudent.php\")</script><br>";	
+		}	
+	}
+
+	public function forgot_pwd($name) 
+	{
+		$result = mysql_query("SELECT * from user_info where email='$name'");
+		if(mysql_num_rows($result) == 0)
+		{
+			echo  "<script>alert(\"We're sorry, but we could not find a user with that email address\")</script><br>"; 
+			echo "<script>location.replace(\"forgot.php\")</script><br>";
+		}
+		while($row = mysql_fetch_array($result))
+	    	{	
+			echo  "<script>alert(\"Your username and password have been emailed to you\")</script><br>"; 
+			$username = $row['username'];
+			$password = $row['password'];
+			$msg  = "Your login information is:\n\n";
+			$msg .= "Username: $username\n";
+			$msg .= "Password: $password\n";
+			mail($name, "Login Information", $msg, "From:noreply@vlab.cse.iitb.ac.in");
+			echo "<script>location.replace(\"login.php\")</script><br>";
+		}
+	}
+
+
+	public function level($user)
+	{
+		$result=mysql_query("SELECT * from user_info where username='$user'");
+		while($row = mysql_fetch_array($result))
+		{
+			if($row['level']=="admin")
+			{
+				echo  "<script>alert(\" User: $user \\n Level: Admin\")</script><br>"; 
+				echo "<script>location.replace(\"admin.php\")</script><br>";
+			}
+			
+			else if($row['level']=="instructor")
+			{
+				echo  "<script>alert(\" User: $user \\n Level: Instructor\")</script><br>"; 
+				echo "<script>location.replace(\"instructor.php\")</script><br>";
+			}
+		}
+	}
+
+
+	public function change($user,$old_pwd,$new_pwd,$cnew_pwd)
+	{
+		$result = mysql_query("SELECT * from user_info where username='$user'");
+		while($row = mysql_fetch_array($result))
+	  	{
+			echo $row;
+		  	if(!strcmp($old_pwd,$row['password'])==0)
+		  	{ 
+				echo  "<script>alert(\"Wrong password\")</script><br>"; 
+				echo "<script>location.replace(\"change.php\")</script><br>";
+		  	}
+		 	else if(!strcmp($new_pwd,$cnew_pwd)==0)
+		  	{
+		  	  	echo  "<script>alert(\"Passwords dont match\")</script><br>"; 
+		  	  	echo "<script>location.replace(\"change.php\")</script><br>";
+		  	}
+		 	else
+		 	{
+				mysql_query("UPDATE user_info SET password = '$new_pwd' WHERE username ='$user'");
+				echo "<script>alert(\"password successfully changed\")</script><br>";
+				$email = $row['email'];
+				$username = $row['username'];
+				$msg  = "Your password has been changed for vLAB.\n";
+				$msg .= "Your new login information is:\n\n";
+				$msg .= "Username: $username\n";
+				$msg .= "Password: $new_pwd\n";
+				mail($email, "Login Information","$msg", "From:noreply@vlab.cse.iitb.ac.in");
+				echo "<script>location.replace(\"index.php\")</script><br>";
+				break; 
+			}
+		}
+	}
+	
+	public function add_template($template,$os,$username,$password)
+	{
+		$result=mysql_query("select * from template_info where templatename='$template'");
+		if(mysql_num_rows($result) == 0)
+		{
+			$result1=mysql_query("INSERT INTO template_info (templatename,os,username,password)
+			VALUES ('$template','$os','$username','$password')") ;
+			echo  "<script>alert(\"Template registered successfully!!!.\")</script><br>"; 
+			echo "<script>location.replace(\"admin.php\")</script><br>";
+		}
+		else
+		{
+			echo "<script>alert(\"Template with this name is already present,try with another name !!!.\")</script><br>"; 
+			echo "<script>location.replace(\"addtemplate.php\")</script><br>";
+		}
+	}
+	
+	public function delete_course($courseid)
+	{
+		mysql_query("delete from course_info where courseid='$courseid'");
+		mysql_query("delete from enrollment_info where courseid='$courseid'");
+		mysql_query("delete from vm_info where courseid='$courseid'");
+	}
+	
+	public function convertfilesize($bytes)
+	{
+		$bytes = floatval($bytes);
+		$arBytes = array(
+		    0 => array(
+			"UNIT" => "TB",
+			"VALUE" => pow(1024, 4)
+		    ),
+		    1 => array(
+			"UNIT" => "GB",
+			"VALUE" => pow(1024, 3)
+		    ),
+		    2 => array(
+			"UNIT" => "MB",
+			"VALUE" => pow(1024, 2)
+		    ),
+		    3 => array(
+			"UNIT" => "KB",
+			"VALUE" => 1024
+		    ),
+		    4 => array(
+			"UNIT" => "B",
+			"VALUE" => 1
+		    ),
+		);
+
+		foreach($arBytes as $arItem)
+		{
+			if($bytes >= $arItem["VALUE"])
+			{
+			    $result = $bytes / $arItem["VALUE"];
+			 //   $result = str_replace(".", "," , strval(round($result, 2)))." ".$arItem["UNIT"];
+			    break;
+			}
+		}
+	//	$words = explode(",", $result);
+	//	$result=$words[0];
+	//	$words = explode(" ", $words[1]);
+	//	if($words[0]>50)
+	//		$result+=1;
+	//	$result=$result." ".$words[1];
+		$words = explode(" ", $result);
+		$result = sprintf ("%.2f", $words[0]);
+		$result=$result." ".$arItem["UNIT"];
+		return $result;
+	}
+} 
+?>

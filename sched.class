@@ -1,0 +1,84 @@
+<?php 
+class Sched
+{
+	private $redis;
+	public function __construct() 
+	{
+		$this->redis = new Redis();
+		$this->redis->connect('127.0.0.1',6379);
+	}
+	
+	public function sched()
+	{
+		if($this->redis->ping())
+		{
+			$num=$this->redis->get("cluster:num-nodes");
+			for($i=0;$i<$num;$i++)
+			{
+				$ip=$this->redis->get("cluster:node".$i);	//Node IP
+				$cmd="virsh -c qemu+tcp://$ip/system ";
+				$out=shell_exec($cmd."nodecpustats --percent");	//CPU
+				$out=str_replace(' ', '', $out);
+				$out=trim($out);
+				$a=explode(PHP_EOL,$out);
+				$idle=explode(":",$a[3]);
+				$iowait=explode(":",$a[4]);
+
+			/*	$out=shell_exec($cmd."nodememstats");		//Memory
+				$out=str_replace(' ', '', $out);
+				$out=trim($out);
+				$a=explode(PHP_EOL,$out);
+				$free=explode(":",$a[1]);
+			*/
+				if($idle[1]>="30" && $iowait[1]<="30")
+				{
+					return $ip;
+				}				
+			}
+		}
+		else
+		{
+			echo "Redis is not running on the system";			
+		}
+	}
+
+	public function info() 
+	{	
+		
+		if($this->redis->ping())	
+		{
+			$num=$this->redis->get("cluster:num-nodes");
+			for($i=0;$i<$num;$i++)
+			{
+				$ip=$this->redis->get("cluster:node".$i);	// Node information
+				echo "IP Address: ".$ip."<br>";
+				$cmd="timeout 5 virsh -c qemu+tcp://$ip/system ";
+				$out=shell_exec($cmd."nodeinfo");
+				$out=str_replace(' ', '', $out);
+				$out=trim($out);
+				$a=explode(PHP_EOL,$out);
+				print_r($a);
+				echo "<br>";
+
+				$out=shell_exec($cmd."nodecpustats --percent");		//CPU (Idle + iowait)
+				$out=str_replace(' ', '', $out);
+				$out=trim($out);
+				$a=explode(PHP_EOL,$out);
+				print_r($a);
+				echo "<br>";
+
+				$out=shell_exec($cmd."nodememstats");			//Memory
+				$out=str_replace(' ', '', $out);
+				$out=trim($out);
+				$a=explode(PHP_EOL,$out);
+				print_r($a);
+				echo "<br><br>";
+			}
+		}
+		else
+		{
+			echo "Redis is not running on the system";			
+		}
+	}
+}
+?>

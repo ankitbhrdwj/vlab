@@ -1,0 +1,4 @@
+Server : 1.ldap.cse.iitb.ac.in
+Port : 389
+Base DN : dc=cse,dc=iitb,dc=ac,dc=in
+Bind DN : anonymous-bind is allowed. For thunderbird, leave Bind DN field blank. 

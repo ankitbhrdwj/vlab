@@ -1,0 +1,422 @@
+[2015-07-06 20:18:53 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e9b190
+[2015-07-06 20:18:53 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907e9b190) returned 0
+[2015-07-06 20:18:53 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907e9af80
+[2015-07-06 20:18:53 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e9b400
+[2015-07-06 20:18:53 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e9b400
+[2015-07-06 20:18:53 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e9b400) completed successfully
+[2015-07-06 20:18:53 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9af80) completed successfully
+[2015-07-06 20:18:53 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e9b400 (conn 0x7f6907a71f28) is not allocated
+[2015-07-06 20:18:53 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e9b190 (conn 0x7f6907e999f0) is allocated
+[2015-07-06 20:18:53 libvirt-php/core   ]: php_libvirt_domain_dtor: virDomainFree(0x7f6907e9b190) completed successfully
+[2015-07-06 20:18:53 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e999f0) completed successfully
+[2015-07-06 20:19:07 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb3740) completed successfully
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e7f830
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907e7f830) returned 0
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:19:30 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:30 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e7f830
+[2015-07-06 20:19:30 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e7f830) completed successfully
+[2015-07-06 20:19:30 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 20:19:30 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e7f830 (conn 0x7f6907e9d120) is not allocated
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907edce90
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907edce90) returned 0
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[Mon Jul 06 20:19:35.633932 2015] [:error] [pid 10380] [client 127.0.0.1:36641] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/dashboard_admin.php on line 223, referer: http://localhost/vlab/dashboard_admin.php
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:19:35 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:35 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907edce90
+[2015-07-06 20:19:35 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907edce90) completed successfully
+[2015-07-06 20:19:35 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 20:19:35 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907edce90 (conn 0x7f6907e9dab0) is not allocated
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[Mon Jul 06 20:19:37.047854 2015] [:error] [pid 10380] [client 127.0.0.1:36641] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/dashboard_admin.php on line 223, referer: http://localhost/vlab/dashboard_admin.php
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:19:37 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:37 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907edc940
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907edc940) returned 0
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[Mon Jul 06 20:19:39.663759 2015] [:error] [pid 10380] [client 127.0.0.1:36641] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/dashboard_admin.php on line 223, referer: http://localhost/vlab/dashboard_admin.php
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:19:39 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:39 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907edc940
+[2015-07-06 20:19:39 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907edc940) completed successfully
+[2015-07-06 20:19:39 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 20:19:39 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907edc940 (conn 0x7f6907e9baa0) is not allocated
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e7f390
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907e7f390) returned 0
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:19:41 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 20:19:41 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e7f390
+[2015-07-06 20:19:41 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e7f390) completed successfully
+[2015-07-06 20:19:41 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 20:19:41 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e7f390 (conn 0x7f6907e9b9a8) is not allocated
+[2015-07-06 20:59:12 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 20:59:13 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 20:59:23 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e97fc0) completed successfully
+[2015-07-06 20:59:24 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e98cb0) completed successfully
+[Mon Jul 06 20:59:28.362387 2015] [:error] [pid 26533] [client 127.0.0.1:36799] PHP Notice:  Undefined variable: num in /var/www/html/vlab/libvirt.class on line 385, referer: http://localhost/vlab/delete.php?option=2
+rm: cannot remove '/vlab/vm_instances/CS101': No such file or directory
+[2015-07-06 20:59:28 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e982e0) completed successfully
+[2015-07-06 20:59:28 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e98ba0) completed successfully
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907eb3660
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://127.0.0.1/system...
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.26.104/system established, returning 0x7f6907eb4440
+[2015-07-06 20:59:48 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb3660) completed successfully
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.26.104/system...
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.28.250/system established, returning 0x7f6907eb3660
+[2015-07-06 20:59:48 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb4440) completed successfully
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.28.250/system...
+[2015-07-06 20:59:48 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 20:59:48 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 20:59:48 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb3660) completed successfully
+[2015-07-06 21:00:07 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9a510) completed successfully
+[Mon Jul 06 21:02:56.569280 2015] [:error] [pid 10380] [client 127.0.0.1:36838] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 24, referer: http://localhost/vlab/login.php
+[2015-07-06 21:02:56 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:02:58 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:03:00 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:03:06 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:03:07 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[Mon Jul 06 21:03:10.571128 2015] [:error] [pid 26531] [client 127.0.0.1:36845] PHP Notice:  Undefined variable: num in /var/www/html/vlab/libvirt.class on line 385, referer: http://localhost/vlab/delete.php?option=2
+rm: cannot remove '/vlab/vm_instances/CS101': No such file or directory
+[2015-07-06 21:03:10 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:03:10 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[Mon Jul 06 21:03:51.038158 2015] [:error] [pid 26534] [client 127.0.0.1:36861] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 49, referer: http://localhost/vlab/login.php
+[2015-07-06 21:03:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb82d0) completed successfully
+[2015-07-06 21:03:53 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb82d0) completed successfully
+[2015-07-06 21:03:54 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb82d0) completed successfully
+[2015-07-06 21:03:55 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[Mon Jul 06 21:04:13.591966 2015] [:error] [pid 15657] [client 127.0.0.1:36871] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/vlab/instructor.php on line 126, referer: http://localhost/vlab/template.php
+[2015-07-06 21:04:13 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9a640) completed successfully
+[Mon Jul 06 21:05:48.041320 2015] [:error] [pid 10380] [client 127.0.0.1:36886] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 24, referer: http://localhost/vlab/login.php
+[2015-07-06 21:05:48 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:05:50 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:06:00 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:06:01 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[Mon Jul 06 21:06:04.336468 2015] [:error] [pid 26531] [client 127.0.0.1:36892] PHP Notice:  Undefined variable: num in /var/www/html/vlab/libvirt.class on line 385, referer: http://localhost/vlab/delete.php?option=2
+rm: cannot remove '/vlab/vm_instances/CS101': No such file or directory
+[2015-07-06 21:06:04 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:06:04 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[Mon Jul 06 21:06:13.356286 2015] [:error] [pid 26531] [client 127.0.0.1:36892] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 49, referer: http://localhost/vlab/login.php
+[2015-07-06 21:06:13 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:06:16 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:06:18 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:06:19 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e815e0) completed successfully
+[2015-07-06 21:06:25 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e813a0) completed successfully
+[2015-07-06 21:06:26 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e813a0) completed successfully
+[Mon Jul 06 21:06:43.493378 2015] [:error] [pid 26531] [client 127.0.0.1:36892] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/vlab/instructor.php on line 126, referer: http://localhost/vlab/addstudent.php
+[2015-07-06 21:06:43 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e813a0) completed successfully
+[2015-07-06 21:06:44 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ec6760) completed successfully
+[Mon Jul 06 21:07:21.093920 2015] [:error] [pid 15657] [client 127.0.0.1:36925] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/vlab/instructor.php on line 126, referer: http://localhost/vlab/dashboard.php
+[2015-07-06 21:07:21 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9b0e0) completed successfully
+[2015-07-06 21:07:24 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9b150) completed successfully
+[2015-07-06 21:07:26 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9b150) completed successfully
+[2015-07-06 21:08:06 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e7f480) completed successfully
+[2015-07-06 21:08:27 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb3840) completed successfully
+[2015-07-06 21:08:28 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9d730) completed successfully
+[Mon Jul 06 21:08:30.714924 2015] [:error] [pid 26535] [client 127.0.0.1:36939] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/vlab/instructor.php on line 126, referer: http://localhost/vlab/instructor.php?option=2
+[2015-07-06 21:08:30 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9d730) completed successfully
+[2015-07-06 21:08:41 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ea4580) completed successfully
+[2015-07-06 21:08:42 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ea4560) completed successfully
+[2015-07-06 21:08:49 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:08:49 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[Mon Jul 06 21:08:52.508885 2015] [:error] [pid 10380] [client 127.0.0.1:36954] PHP Notice:  Undefined variable: num in /var/www/html/vlab/libvirt.class on line 385, referer: http://localhost/vlab/delete.php?option=2
+rm: cannot remove '/vlab/vm_instances/CS101': No such file or directory
+[2015-07-06 21:08:52 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:08:52 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907ee1ed0
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://127.0.0.1/system...
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.26.104/system established, returning 0x7f6907ee2ad0
+[2015-07-06 21:08:59 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ee1ed0) completed successfully
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.26.104/system...
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.28.250/system established, returning 0x7f6907ee1ed0
+[2015-07-06 21:08:59 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ee2ad0) completed successfully
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.28.250/system...
+[2015-07-06 21:08:59 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:08:59 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda130) completed successfully
+[2015-07-06 21:08:59 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ee1ed0) completed successfully
+[2015-07-06 21:12:08 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e85050) completed successfully
+[2015-07-06 21:12:12 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e85050) completed successfully
+[2015-07-06 21:12:17 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e85050) completed successfully
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907edf210
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://127.0.0.1/system...
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.26.104/system established, returning 0x7f6907efaa20
+[2015-07-06 21:12:29 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907edf210) completed successfully
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.26.104/system...
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.28.250/system established, returning 0x7f6907edf210
+[2015-07-06 21:12:29 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907efaa20) completed successfully
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.28.250/system...
+[2015-07-06 21:12:29 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:12:29 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e83500) completed successfully
+[2015-07-06 21:12:29 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907edf210) completed successfully
+[Mon Jul 06 21:12:37.698790 2015] [:error] [pid 26534] [client 127.0.0.1:37063] PHP Notice:  Undefined offset: 1 in /var/www/html/vlab/cluster.php on line 213, referer: http://localhost/vlab/cluster.php
+[2015-07-06 21:12:37 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:12:38 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:12:40 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:12:51 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:12:51 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:12:51 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 0 domains
+[2015-07-06 21:12:51 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 0 domains
+[2015-07-06 21:12:51 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:12:51 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:12:51 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:12:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e999f0) completed successfully
+[2015-07-06 21:12:57 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ea4480) completed successfully
+[Mon Jul 06 21:13:06.921753 2015] [:error] [pid 26533] [client 127.0.0.1:37091] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 49, referer: http://localhost/vlab/login.php
+[2015-07-06 21:13:07 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e98210) completed successfully
+[2015-07-06 21:13:10 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e98a40) completed successfully
+[2015-07-06 21:13:12 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9acb0) completed successfully
+[2015-07-06 21:13:13 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e98ea0) completed successfully
+[Mon Jul 06 21:13:52.445871 2015] [:error] [pid 26532] [client 127.0.0.1:37114] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/vlab/instructor.php on line 126, referer: http://localhost/vlab/dashboard.php
+[2015-07-06 21:13:52 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e83500) completed successfully
+[2015-07-06 21:13:53 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e83500) completed successfully
+[Mon Jul 06 21:14:31.381265 2015] [:error] [pid 26534] [client 127.0.0.1:37120] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 49, referer: http://localhost/vlab/login.php
+[Mon Jul 06 21:14:37.374760 2015] [:error] [pid 26534] [client 127.0.0.1:37120] PHP Warning:  libvirt_domain_lookup_by_name(): Domain not found: no domain with matching name '133050024CS101' in /var/www/html/vlab/libvirt.class on line 224, referer: http://localhost/vlab/student.php?option=2
+[2015-07-06 21:14:37 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:14:44 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907e99440
+[2015-07-06 21:14:44 libvirt-php/core   ]: libvirt_domain_define_xml: returning 0x7f6907e9bea0
+[2015-07-06 21:14:44 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.26.104/system established, returning 0x7f6907e9c380
+[2015-07-06 21:14:44 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e9bea0
+[2015-07-06 21:14:44 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e9bea0) completed successfully
+[2015-07-06 21:14:44 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99440) completed successfully
+[2015-07-06 21:14:44 libvirt-php/core   ]: libvirt_domain_define_xml: returning 0x7f6907e9afb0
+[2015-07-06 21:14:44 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e9bea0 (conn 0x7f6907ee0038) is not allocated
+[2015-07-06 21:14:44 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.28.250/system established, returning 0x7f6907e99440
+[2015-07-06 21:14:44 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e9afb0
+[2015-07-06 21:14:44 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e9afb0) completed successfully
+[2015-07-06 21:14:44 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9c380) completed successfully
+[Mon Jul 06 21:14:44.696540 2015] [:error] [pid 15656] [client 127.0.0.1:37124] PHP Warning:  libvirt_domain_define_xml(): operation failed: domain '133050024CS101' already exists with uuid bad78d25-4b4a-4968-8c93-fbbc6f6df326 in /var/www/html/vlab/libvirt.class on line 165, referer: http://localhost/vlab/vmstart.php
+[2015-07-06 21:14:44 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e9afb0 (conn (nil)) is not allocated
+[2015-07-06 21:14:44 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99440) completed successfully
+[2015-07-06 21:14:44 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e9b0f0
+[2015-07-06 21:14:44 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907e9b0f0) returned 0
+[2015-07-06 21:14:44 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e9b0f0 (conn 0x7f6907e999f0) is allocated
+[2015-07-06 21:14:44 libvirt-php/core   ]: php_libvirt_domain_dtor: virDomainFree(0x7f6907e9b0f0) completed successfully
+[Mon Jul 06 21:14:44.702005 2015] [:error] [pid 15656] [client 127.0.0.1:37124] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/vmstart.php on line 319, referer: http://localhost/vlab/vmstart.php
+[2015-07-06 21:14:44 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e999f0) completed successfully
+[Mon Jul 06 21:16:24.308866 2015] [:error] [pid 15658] [client 127.0.0.1:37150] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 24, referer: http://localhost/vlab/login.php
+[2015-07-06 21:16:24 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb43a0) completed successfully
+[2015-07-06 21:16:25 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907ea4480) completed successfully
+[2015-07-06 21:16:33 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99160) completed successfully
+[2015-07-06 21:16:34 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99160) completed successfully
+[Mon Jul 06 21:16:37.582189 2015] [:error] [pid 26533] [client 127.0.0.1:37155] PHP Notice:  Undefined variable: num in /var/www/html/vlab/libvirt.class on line 385, referer: http://localhost/vlab/delete.php?option=2
+rm: cannot remove '/vlab/vm_instances/CS101': No such file or directory
+[2015-07-06 21:16:37 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99160) completed successfully
+[2015-07-06 21:16:37 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99160) completed successfully
+[2015-07-06 21:16:48 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907edd7b0) completed successfully
+[2015-07-06 21:16:49 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907edd7b0) completed successfully
+[Mon Jul 06 21:17:21.531613 2015] [:error] [pid 15657] [client 127.0.0.1:37176] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 24, referer: http://localhost/vlab/login.php
+[2015-07-06 21:17:21 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda6e0) completed successfully
+[2015-07-06 21:17:26 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eda6e0) completed successfully
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907e999f0
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://127.0.0.1/system...
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.26.104/system established, returning 0x7f6907e9c1e0
+[2015-07-06 21:17:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e999f0) completed successfully
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.26.104/system...
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.28.250/system established, returning 0x7f6907e999f0
+[2015-07-06 21:17:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9c1e0) completed successfully
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp://10.129.28.250/system...
+[2015-07-06 21:17:51 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:17:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9b640) completed successfully
+[2015-07-06 21:17:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e999f0) completed successfully
+[2015-07-06 21:18:02 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:18:02 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:18:02 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 0 domains
+[2015-07-06 21:18:02 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 0 domains
+[2015-07-06 21:18:02 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:18:02 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:18:02 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:18:02 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb4d80) completed successfully
+[Mon Jul 06 21:18:16.044085 2015] [:error] [pid 26531] [client 127.0.0.1:37197] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 49, referer: http://localhost/vlab/login.php
+[2015-07-06 21:18:16 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e813a0) completed successfully
+[2015-07-06 21:18:19 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e813a0) completed successfully
+[2015-07-06 21:18:20 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e87c20) completed successfully
+[2015-07-06 21:18:21 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e87c20) completed successfully
+[Mon Jul 06 21:19:09.494961 2015] [:error] [pid 26534] [client 127.0.0.1:37220] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 24, referer: http://localhost/vlab/login.php
+[2015-07-06 21:19:09 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:19:15 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e999f0) completed successfully
+[2015-07-06 21:19:26 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9d730) completed successfully
+[2015-07-06 21:19:44 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:19:44 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:19:44 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 0 domains
+[2015-07-06 21:19:44 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 0 domains
+[2015-07-06 21:19:44 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:19:44 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:19:44 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:19:44 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e9d730) completed successfully
+[Mon Jul 06 21:20:10.264690 2015] [:error] [pid 26533] [client 127.0.0.1:37237] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 49, referer: http://localhost/vlab/login.php
+[Mon Jul 06 21:20:16.375830 2015] [:error] [pid 26533] [client 127.0.0.1:37237] PHP Warning:  libvirt_domain_lookup_by_name(): Domain not found: no domain with matching name '133050024CS101' in /var/www/html/vlab/libvirt.class on line 224, referer: http://localhost/vlab/student.php?option=2
+[2015-07-06 21:20:16 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e98d20) completed successfully
+[2015-07-06 21:20:20 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907e982e0
+[2015-07-06 21:20:21 libvirt-php/core   ]: libvirt_domain_define_xml: returning 0x7f6907e99650
+[2015-07-06 21:20:21 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.26.104/system established, returning 0x7f6907e99ac0
+[2015-07-06 21:20:21 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e99650
+[2015-07-06 21:20:21 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e99650) completed successfully
+[2015-07-06 21:20:21 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e982e0) completed successfully
+[2015-07-06 21:20:21 libvirt-php/core   ]: libvirt_domain_define_xml: returning 0x7f6907ebd4e0
+[2015-07-06 21:20:21 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e99650 (conn 0x7f6907ee0f48) is not allocated
+[2015-07-06 21:20:21 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://10.129.28.250/system established, returning 0x7f6907e982e0
+[2015-07-06 21:20:21 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907ebd4e0
+[2015-07-06 21:20:21 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907ebd4e0) completed successfully
+[2015-07-06 21:20:21 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99ac0) completed successfully
+[2015-07-06 21:20:21 libvirt-php/core   ]: libvirt_domain_define_xml: returning 0x7f6907ebd470
+[2015-07-06 21:20:21 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907ebd4e0 (conn 0x7f6907ee1000) is not allocated
+[2015-07-06 21:20:21 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907ebd470
+[2015-07-06 21:20:21 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907ebd470) completed successfully
+[2015-07-06 21:20:21 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e982e0) completed successfully
+[2015-07-06 21:20:21 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907ebd470 (conn 0x7f6907ee0f58) is not allocated
+[2015-07-06 21:20:21 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e9ac40
+[2015-07-06 21:20:21 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907e9ac40) returned 0
+[2015-07-06 21:20:21 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e9ac40 (conn 0x7f6907e99160) is allocated
+[2015-07-06 21:20:21 libvirt-php/core   ]: php_libvirt_domain_dtor: virDomainFree(0x7f6907e9ac40) completed successfully
+[Mon Jul 06 21:20:21.226705 2015] [:error] [pid 26533] [client 127.0.0.1:37237] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/vmstart.php on line 319, referer: http://localhost/vlab/vmstart.php
+[2015-07-06 21:20:21 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e99160) completed successfully
+[2015-07-06 21:20:30 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907e87420
+[2015-07-06 21:20:30 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907ec6650
+[2015-07-06 21:20:31 libvirt-php/core   ]: libvirt_domain_create: virDomainCreate(0x7f6907ec6650) returned 0
+[2015-07-06 21:20:31 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907ec6650
+[2015-07-06 21:20:31 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907ec6650) completed successfully
+[2015-07-06 21:20:31 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e87420) completed successfully
+[2015-07-06 21:20:31 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907ec6650 (conn 0x7f6907edc6e8) is not allocated
+[2015-07-06 21:20:31 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907e8a470
+[2015-07-06 21:20:31 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e8a1a0
+[2015-07-06 21:20:31 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e8a1a0
+[2015-07-06 21:20:31 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e8a1a0) completed successfully
+[2015-07-06 21:20:31 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e8a470) completed successfully
+[2015-07-06 21:20:31 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e8a1a0 (conn 0x7f6907edc298) is not allocated
+error: Guest agent is not responding: Guest agent not available for now
+No JSON object could be decoded
+error: Guest agent is not responding: Guest agent not available for now
+No JSON object could be decoded
+error: Guest agent is not responding: Guest agent not available for now
+No JSON object could be decoded
+error: Guest agent is not responding: Guest agent not available for now
+No JSON object could be decoded
+[2015-07-06 21:20:51 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e8aa40
+[2015-07-06 21:20:51 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907e8aa40) returned 0
+[2015-07-06 21:20:51 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907e87420
+[2015-07-06 21:20:51 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e8a160
+[2015-07-06 21:20:51 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e8a160
+[2015-07-06 21:20:51 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e8a160) completed successfully
+[2015-07-06 21:20:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e87420) completed successfully
+[2015-07-06 21:20:51 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e8a160 (conn 0x7f6907edc148) is not allocated
+[2015-07-06 21:20:51 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e8aa40 (conn 0x7f6907e87c20) is allocated
+[2015-07-06 21:20:51 libvirt-php/core   ]: php_libvirt_domain_dtor: virDomainFree(0x7f6907e8aa40) completed successfully
+[Mon Jul 06 21:20:51.065813 2015] [:error] [pid 26531] [client 127.0.0.1:37255] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/vmstart.php on line 319, referer: http://localhost/vlab/vmstart.php
+[2015-07-06 21:20:51 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e87c20) completed successfully
+[2015-07-06 21:21:31 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907edead0
+[2015-07-06 21:21:31 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907edead0) returned 0
+[2015-07-06 21:21:31 libvirt-php/core   ]: libvirt_connect: Connection to qemu+tcp://127.0.0.1/system established, returning 0x7f6907edf210
+[2015-07-06 21:21:31 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907efb350
+[2015-07-06 21:21:31 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907efb350
+[2015-07-06 21:21:31 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907efb350) completed successfully
+[2015-07-06 21:21:31 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907edf210) completed successfully
+[2015-07-06 21:21:31 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907efb350 (conn 0x7f6907a71f28) is not allocated
+[2015-07-06 21:21:31 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907edead0 (conn 0x7f6907e83500) is allocated
+[2015-07-06 21:21:31 libvirt-php/core   ]: php_libvirt_domain_dtor: virDomainFree(0x7f6907edead0) completed successfully
+[2015-07-06 21:21:31 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907e83500) completed successfully
+[Mon Jul 06 21:21:45.980524 2015] [:error] [pid 26534] [client 127.0.0.1:37283] PHP Notice:  Undefined index: set in /var/www/html/vlab/login.php on line 24, referer: http://localhost/vlab/login.php
+[2015-07-06 21:21:46 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907e7f500
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907e7f500) returned 0
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:21:49 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:49 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907e7f500
+[2015-07-06 21:21:49 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907e7f500) completed successfully
+[2015-07-06 21:21:49 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:21:49 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907e7f500 (conn 0x7f6907ede260) is not allocated
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[Mon Jul 06 21:21:53.176106 2015] [:error] [pid 26534] [client 127.0.0.1:37283] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/dashboard_admin.php on line 223, referer: http://localhost/vlab/dashboard_admin.php
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:21:53 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:53 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907eb3620
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907eb3620) returned 0
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[Mon Jul 06 21:21:54.775614 2015] [:error] [pid 26534] [client 127.0.0.1:37283] PHP Warning:  strstr(): Empty needle in /var/www/html/vlab/dashboard_admin.php on line 223, referer: http://localhost/vlab/dashboard_admin.php
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:21:54 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:54 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907eb3620
+[2015-07-06 21:21:54 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907eb3620) completed successfully
+[2015-07-06 21:21:54 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:21:54 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907eb3620 (conn 0x7f6907edec20) is not allocated
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_list_domains: Found 0 domains
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_list_domains: virConnectListDomains returned 0 domains
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 1 domains
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_list_domains: virConnectListDefinedDomains returned 1 domains
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_list_domains: Found inactive domain 133050024CS101
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_domain_lookup_by_name: domain name = '133050024CS101', returning 0x7f6907eb8080
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_domain_get_info: virDomainGetInfo(0x7f6907eb8080) returned 0
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2015-07-06 21:21:57 libvirt-php/core   ]: libvirt_connect_get_information: Got connection URI of qemu+tcp:///system...
+[2015-07-06 21:21:57 libvirt-php/core   ]: free_resource: Freeing libvirt domain resource at 0x7f6907eb8080
+[2015-07-06 21:21:57 libvirt-php/core   ]: free_resource: virDomainFree(0x7f6907eb8080) completed successfully
+[2015-07-06 21:21:57 libvirt-php/core   ]: php_libvirt_connection_dtor: virConnectClose(0x7f6907eb41d0) completed successfully
+[2015-07-06 21:21:57 libvirt-php/core   ]: check_resource_allocation: libvirt domain resource 0x7f6907eb8080 (conn 0x7f6907edeb28) is not allocated

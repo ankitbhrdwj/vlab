@@ -1,0 +1,52 @@
+Install php-mysql bindings and create tables.
+========================================
+1) Give Write permission to all the files and directory inside vlab directory. 
+2) Create settings.php in data directory.
+3) Execute following commands in the terminal.
+	mysql -u root -p	(Password will be password in this case or depends what you gave at installation time)
+	CREATE DATABASE vlab;
+4) open phpinfo.php in browser and check if php-mysql is working properly. You will get "MySQL Support	enabled" in phpinfo page. If not then install php5-mysql and restart apache2 service.
+
+5) Open install.php in your browser and enter required details as following:
+	Database name: vlab 
+	Username : root 
+	Password : password or whatever you gave at installation time.
+	Hostname : localhost
+	Port     : 0
+	Table Prefix:  (Leave blank)
+
+6) Click on "Save and Install" to create the required tables for vlab.
+
+Install libvirt-php bindings:
+============================
+http://libvirt.org/sources/php/libvirt-php-0.4.8.tar.gz
+sudo apt-get install libvirt-dev libxml2-dev php5-dev
+tar -xvf ibvirt-php-0.4.8.tar.gz
+cd libvirt-php-0.4.8
+./configure
+make
+sudo make install
+
+#unix_sock_ro_perms = "0777" and listen on tcp
+www-data ALL = NOPASSWD: /usr/bin/virsh in /etc/sudoers
+sudo service apache2 restart
+
+#Copy paste things from default.setting to setting for ldap and libvirt.
+
+htaccess
+==============================================
+Cofigure for .htaccess in documents directory.
+/etc/apache2/apache2.conf for Ubuntu 14.04  and add
+<Directory /var/www/>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+or /etc/apache/sites-enabled/default.conf for Ubuntu 12.04  and make  AllowOverride All
+
+sudo service apache2 restart
+
+Php-Redis
+====================================================================================
+

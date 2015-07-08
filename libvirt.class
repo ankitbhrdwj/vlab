@@ -1,0 +1,400 @@
+<?php
+if(!isset($_SESSION)) 
+{ 
+        session_start(); 
+} 
+require "./data/settings.php";
+class Libvirt
+{
+	public $conn=null;
+	public $redis=null;
+	private $small=256;
+	private $medium=512;
+	private $large=1024;
+
+	public function __construct() 
+	{
+		static $log;
+		$this->connect();
+		if(!isset($this->conn))
+			$this->conn=$this->connect_libvirt();
+		if(!isset($_SESSION['val']))
+		{
+			$_SESSION['val'] = false;
+		}
+		if(!isset($log)) 
+		{ 
+        		$log=libvirt_logfile_set("libvirt_error.log",100);
+			if ($log==false)
+			{
+				echo ("Libvirt last error:".libvirt_get_last_error()."\n");
+				exit;
+			}
+		} 
+		$this->redis = new Redis();
+		$this->redis->connect('127.0.0.1', 6379);
+		if(!$this->redis->ping())
+		{
+			echo "Redis is not running in the system";
+		}
+	}
+	
+	public function connect() 
+	{	
+		global $LOGIN_DB_HOSTNAME,$LOGIN_DB_PWD,$LOGIN_DB_UNAME,$LOGIN_DB_NAME;
+		mysql_connect($LOGIN_DB_HOSTNAME,$LOGIN_DB_UNAME,$LOGIN_DB_PWD) or die("Cannot connect to MySQL server!");	
+		mysql_select_db($LOGIN_DB_NAME) or die("Cannot select database!");
+	}	
+
+	public function connect_libvirt()
+	{
+		global $URI,$CREDENTIALS;
+	//	$conn=libvirt_connect($URI,false,$CREDENTIALS);
+		$conn=libvirt_connect($URI,false);
+		if ($conn==false)
+		{
+			echo ("Libvirt last error:".libvirt_get_last_error()."\n");
+			exit;
+		}
+		return $conn;
+	}
+	
+	public function connect_libvirt_remote($ip)
+	{
+		$uri="qemu+tcp://".$ip."/system";
+		$conn=libvirt_connect($uri,false);
+		if ($conn==false)
+		{
+			echo ("Libvirt last error:".libvirt_get_last_error()."\n");
+			exit;
+		}
+		return $conn;
+	}
+
+	public function xml($vmname)
+	{
+		$mem=1*1024*1024;
+		$vcpu=1;
+		$uid=shell_exec("/usr/bin/uuidgen");
+		$uid=preg_replace("/[\\n\\r]+/", "", $uid);
+		$result=mysql_query("Select * from vm_info where vmname='$vmname'") or die("Unable to connect to database");;
+		$row = mysql_fetch_array($result);
+		$mac=$row['mac'];
+		$courseid=$row['courseid'];
+
+		$xml="<!--			
+		WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE 
+		OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+		virsh edit vmname or other application using the libvirt API.
+		-->
+		<domain type='kvm'>
+		<name>$vmname</name>
+		<uuid>$uid</uuid>
+		<memory>$mem</memory>
+		<currentMemory>$mem</currentMemory>
+		<vcpu>$vcpu</vcpu>
+		<os>
+			<type arch='x86_64' machine='pc-1.0'>hvm</type>
+			<boot dev='hd'/>
+		</os>
+		<features>
+			<acpi/>
+			<apic/>
+			<pae/>
+		</features>
+		<clock offset='utc'/>
+		<on_poweroff>destroy</on_poweroff>
+		<on_reboot>restart</on_reboot>
+		<on_crash>restart</on_crash>
+		<devices>
+			<emulator>/usr/bin/kvm</emulator>
+			<disk type='network' device='disk'>
+    			   <driver name='qemu'/>
+     			   <source protocol='sheepdog' name='$vmname'/>
+      			   <target dev='hda' bus='ide'/>
+      			   <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+   			</disk>
+			<!--<interface type='bridge'>
+				<mac address='$mac'/>
+				<source bridge='br0'/>
+				<model type='virtio'/>
+				<address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+			</interface>-->
+			<interface type='network'>
+				<mac address='$mac'/>
+				<source network='default'/>
+				<model type='virtio'/>
+				<address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+		    	</interface> 
+			<serial type='pty'>
+				<target port='0'/>
+			</serial>
+			<console type='pty'>
+				<target type='serial' port='0'/>
+			</console>
+			<input type='mouse' bus='ps2'/>
+			<graphics type='vnc' port='-1' autoport='yes'/>
+			<sound model='ich6'>
+				<address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+			</sound>
+			<video>
+				<model type='cirrus' vram='9216' heads='1'/>
+				<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+			</video>
+			<memballoon model='virtio'>
+				<address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+			</memballoon>
+			<channel type='unix'>
+				<source mode='bind'/>
+				<target type='virtio' name='org.qemu.guest_agent.0'/>
+			</channel> 
+		</devices>
+		</domain>";
+ 		$filename="extras/xmls/";
+		$myfile = fopen($filename."$vmname.xml", "w") or die("Unable to open file!"); 
+		fwrite($myfile, $xml);
+		fclose($myfile);
+		$num=$this->redis->get("cluster:num-nodes");
+		$res=null;
+		for($i=0;$i<$num;$i++)
+		{
+			$ip=$this->redis->get("cluster:node".$i);
+			$con=$this->connect_libvirt_remote($ip);
+			if(!$con)
+				echo libvirt_get_last_error();
+			$res=libvirt_domain_define_xml($con,$xml);
+			if(!$res)
+				echo libvirt_get_last_error();
+		}
+		return $res;	
+	}
+
+	public function disk_image($vmname)
+	{
+		
+		$result = mysql_query("SELECT courseid from vm_info where vmname='$vmname'");
+		$row = mysql_fetch_array($result);	
+		$course=$row['courseid'];
+		
+		$result = mysql_query("SELECT template from course_info where courseid='$course'");
+		$row = mysql_fetch_array($result);	
+		$template=$row['template'];
+
+		$cmd="qemu-img create -b sheepdog:$template:$course sheepdog:$vmname 2>&1";
+		$output=shell_exec($cmd);
+		if($output=="NULL")
+		{
+			echo "<pre>$output</pre>";
+		}
+	}
+	
+	public function create_instance($vmname)
+	{
+		$this->disk_image($vmname);
+		$res=$this->xml($vmname);
+		if($res) 
+		{
+			$result = mysql_query("update vm_info set status='1' where vmname='$vmname'");
+			if($result)
+			{
+				echo "<script>alert(\"VM $vmname sucessfully created.\")</script>";
+			}
+		}
+	
+	}
+	
+	public function domain_info($vmname)
+	{
+		$res=libvirt_domain_lookup_by_name($this->conn,$vmname) or die(libvirt_get_last_error());
+		$info=libvirt_domain_get_info($res) or die(libvirt_get_last_error());
+		echo "Name:"."\t".$vmname."<br>";
+		echo "Max memory:\t".$info['maxMem']." KB<br>";
+		echo "Used Memory:\t".$info['memory']." KB<br>";
+		if($info['state']=='5'){ echo "State:\t Shutdown"."<br>";}
+		else { echo "State:\t Running"."<br>";}
+		echo "CPU(s):\t".$info['nrVirtCpu']."<br>";
+		echo "Cpu Time Used(ns):\t".$info['cpuUsed']."<br>";
+		$result=mysql_query("select template_info.os from template_info,course_info where template_info.templatename=course_info.template && course_info.courseid in (SELECT courseid from vm_info where vmname='$vmname')");
+		$row = mysql_fetch_array($result);	
+		echo "OS:\t".$row['os']."<br>";
+	}
+	
+	public function student_domain_info($vmname)
+	{
+	$res=libvirt_domain_lookup_by_name($this->conn,$vmname) or die("Domain Not Created !!! <br>Create VM by clicking on CreateVM Button.");
+	$info=libvirt_domain_get_info($res) or die(libvirt_get_last_error());
+	echo "Max memory:\t".$info['maxMem']." KB<br>";
+	if(!$this->is_active($vmname)){ echo "State:\t Shutdown"."<br>";}
+	else { echo "State:\t Running"."<br>";}
+	echo "vCPU(s):\t".$info['nrVirtCpu']."<br>";
+	$result=mysql_query("select template_info.os from template_info,course_info where template_info.templatename=course_info.template && course_info.courseid in (SELECT courseid from vm_info where vmname='$vmname')");
+	$row = mysql_fetch_array($result);	
+	echo "OS:\t".$row['os']."<br>";
+	}
+	
+	public function sched()
+	{
+		if($this->redis->ping())
+		{
+			$num=$this->redis->get("cluster:num-nodes");
+			for($i=0;$i<$num;$i++)
+			{
+				$ip=$this->redis->get("cluster:node".$i);	//Node IP
+				$cmd="virsh -c qemu+tcp://$ip/system ";
+				$out=shell_exec($cmd."nodecpustats --percent");	//CPU
+				$out=str_replace(' ', '', $out);
+				$out=trim($out);
+				$a=explode(PHP_EOL,$out);
+				$idle=explode(":",$a[3]);
+				$iowait=explode(":",$a[4]);
+
+				if($idle[1]>="30" && $iowait[1]<="30")
+				{
+					return $ip;
+				}				
+			}
+		}
+		else
+		{
+			echo "Redis is not running on the system";			
+		}
+	}
+	
+	public function domain_start($vmname)
+	{
+		if(!$this->is_active($vmname))
+		{
+			$ip=$this->sched();
+			$ip=trim($ip);
+			if($ip)
+			{
+				$con=$this->connect_libvirt_remote($ip);
+				if(!$con)
+					echo libvirt_get_last_error();
+				$res=libvirt_domain_lookup_by_name($con,$vmname);
+				if(!$res)
+					echo libvirt_get_last_error();
+				$output=libvirt_domain_create($res);
+				if($output==false) 
+				{
+					return 0;
+				} 
+				if($output=='1')
+				{
+					$this->redis->set($vmname,$ip);
+					return "Domain started";
+				}
+			}
+			else
+			{
+				return "No Resources left, Please Try after some time";
+			}
+		}
+		else return 0;
+	}		
+
+	public function domain_shutdown($vmname)
+	{
+		$active=$this->is_active($vmname);
+		if($active)
+		{
+			$ip=$this->redis->get($vmname);
+			$con=$this->connect_libvirt_remote($ip);
+			if(!$con)
+				echo libvirt_get_last_error();
+			$res=libvirt_domain_lookup_by_name($con,$vmname);
+			if(!$res)
+			{
+				$error=libvirt_get_last_error();
+				echo "<script>alert(\"$error\")</script>";
+			}
+			if(libvirt_domain_shutdown($res)==false)
+			{
+				$error=libvirt_get_last_error();
+				echo "<script>alert(\"$error\")</script>";
+			}
+		}
+	}	
+	
+	public function is_active($vmname)
+	{
+		$ip=$this->redis->get($vmname);
+		if($ip)
+		{
+			$con=$this->connect_libvirt_remote($ip);
+			if(!$con) 
+				return false;
+			$res=libvirt_domain_lookup_by_name($con,$vmname);
+			if($res)
+			{
+				if(libvirt_domain_is_active($res))
+					return true;
+				else
+				{
+					$this->redis->del($vmname);
+					return false;
+				}
+			}
+			else
+			{
+				echo libvirt_get_last_error();	
+				return false;
+			}
+		}
+		else
+			return false;
+	}
+	
+	public function domipaddr($vmname)
+	{
+		if($this->is_active($vmname))
+		{		
+			$remote_ip=$this->redis->get($vmname);
+			while(true)
+			{	
+				$cmd="sudo virsh -c qemu+tcp://".$remote_ip."/system qemu-agent-command $vmname '{ \"execute\": \"guest-network-get-interfaces\"}' |  /usr/bin/python -m json.tool | /bin/grep -i ip-address | /bin/grep -e 192 -e 10 -e 172 | /usr/bin/xargs | /usr/bin/cut -d\" \" -f2 | /usr/bin/cut -d\",\" -f1 2>&1";
+				$ip=exec($cmd);
+				$ip = trim($ip);
+				if(strpos($ip,'.') !== false)
+				{ 
+					shell_exec("until nc -vzw 2 $ip 22; do sleep 2; done 2>&1");
+					break;
+				}
+			}
+			return $ip;
+		}
+	}
+
+	public function vncport($vmname)
+	{
+		$ip=$this->redis->get($vmname);
+		$con=$this->connect_libvirt_remote($ip);
+		if(!$con)
+			echo "Could Not establish libvirt connection";
+		$res = libvirt_domain_lookup_by_name($con, $vmname);
+		$xmlString = libvirt_domain_get_xml_desc($res, '');
+		$xml = simplexml_load_string($xmlString);
+		$json = json_encode($xml);
+		$data = json_decode($json,TRUE);
+		$port = intval($data["devices"]["graphics"]["@attributes"]["port"]);
+		return $port;	
+	}
+	
+	public function deletevm($vmname)
+	{
+		for($i=0;$i<$num;$i++)
+		{
+			$ip=$this->redis->get("cluster:node".$i);
+			$con=$this->connect_libvirt_remote($ip);
+			if(!$con)
+				echo libvirt_get_last_error();
+			$res = libvirt_domain_lookup_by_name($con,$vmname);
+			libvirt_domain_destroy($res);		
+			$out=libvirt_domain_undefine($res);
+			if($out==0)
+			{
+				echo libvirt_get_last_error();
+			}
+		}
+	}
+}

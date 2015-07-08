@@ -1,0 +1,4 @@
+$log="[".date(DATE_RFC2822)."] msg".PHP_EOL;
+error_log("$log", 3,"stats.log");
+3 message is appended to the file destination. A newline is not automatically added to the end of the message string
+
